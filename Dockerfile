@@ -2,5 +2,13 @@
 From tomcat:8-jre8 
 
 # Maintainer 
-MAINTAINER "Naga" 
-COPY ./webapp.war /usr/local/tomcat/webapps
+WORKDIR /usr/src/app
+
+COPY package.json ./
+
+RUN npm install
+
+COPY . .
+
+EXPOSE 3000
+CMD [ "node", "index.js" ]
